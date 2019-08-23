@@ -1,3 +1,3 @@
-FROM quay.io/alwaystherookie/toolbox-images:base-vscode
+FROM quay.io/alwaystherookie/toolbox-images:base
 
-RUN dnf -y install golang make
+RUN dnf -y install golang
