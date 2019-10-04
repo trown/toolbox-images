@@ -1,3 +1,3 @@
 FROM quay.io/alwaystherookie/toolbox-images:base
 
-RUN dnf -y install cargo rls
+RUN dnf -y install cargo rls openssl-devel protobuf-devel rustfmt
