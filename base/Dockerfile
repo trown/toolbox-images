@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/f30/fedora-toolbox:30
+FROM registry.fedoraproject.org/f31/fedora-toolbox:31
 
 RUN dnf -y copr enable skidnik/termite
 RUN dnf -y install termite fish vim bind-utils jq make openssl-devel protobuf-devel
