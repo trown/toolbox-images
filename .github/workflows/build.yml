@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Login to quay.io
+      run: docker login -u="alwaystherookie+github" -p="${{ secrets.QUAY_PASSWORD }}" quay.io
+      
+    - name: Build the base image
+      run: docker build -t quay.io/alwaystherookie/toolbox-images:base ./base/
+    - name: Publish the base image
+      run: docker push quay.io/alwaystherookie/toolbox-images:base
+      
+    - name: Build the rust image
+      run: docker build -t quay.io/alwaystherookie/toolbox-images:rust ./rust/
+    - name: Publish the rust image
+      run: docker push quay.io/alwaystherookie/toolbox-images:rust
+      
+    - name: Build the devops image
+      run: docker build -t quay.io/alwaystherookie/toolbox-images:devops ./devops/
+    - name: Publish the devops image
+      run: docker push quay.io/alwaystherookie/toolbox-images:devops
+    
